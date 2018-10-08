@@ -25,6 +25,7 @@ select, input, option {
 		<h2>현재상영작</h2>
 		<form
 			action="${pageContext.servletContext.contextPath }/ticket/seat.do" id="f">
+			
 			<p>
 				<select name="title" onchange="timetableAjax(this);" id="title">
 					<option value="">영화를 선택해주세요.</option>
@@ -33,11 +34,13 @@ select, input, option {
 					</c:forEach>
 				</select>
 			</p>
+			
 			<p>
 				<select name="time" id="time">
 					<option value="">영화를 먼저 선택해주세요.</option>
 				</select>
 			</p>
+			
 			<p>
 				<select name="count" id="count">
 					<option value="">예약인원을 선택해주세요.</option>

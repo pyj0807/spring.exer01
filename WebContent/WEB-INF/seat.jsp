@@ -36,36 +36,36 @@ select, input, option {
 				</p>
 			</c:forEach>
 			<script>
+				var limit = ${param.count};
+				
 				var array = new Array();
-
 				var temp = function(target) {
-					maxCheck = 2;
 					if (target.cheked) {
-						array.push(target.value);
+						if(array.length >= limit){
+							window.alert("최대 예약좌석을 초과하였습니다")
+							target.checked=false;
+						}else{
+							if(array.length==0)
+								array.push(target.value);
+							else{
+								var s = target.value.split("-");
+								var c = array[0].split("-");
+								if(s[0]!=c[0]){
+									window.alert("같은 열로 선택바랍니다.")
+									target.checked=false;
+								}
+				
+							}
+						}
 					} else {
 						array.splice(array.indexOf(target.value), 1);
 					}
-					for (var i = 0; i < array.length; i++) {
-						console.log(array[i]);
-						console.log(parseInt(checks[i]) == parseInt(pastCheck[i]));
-						console.log(parseInt(checks[i + 1]) == parseInt(pastCheck[i + 1]));
-
-					}
-				}
-
-				if (array.length == maxCheck) {
-					for (var i = 0; i < check.length; i++) {
-						if (!check[i].checked) {
-							check[i].disabled = true;
-						}
-					}
-				} else {
-					for (var i = 0; i < check.length; i++) {
-						if (!check[i].checked) {
-							check[i].disabled = false;
-						}
-					}
-				}
+					
+				};
+					
+				
+				
+				
 			</script>
 			<button type="submit">예약신청</button>
 		</form>
